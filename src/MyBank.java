@@ -50,26 +50,33 @@ public class MyBank implements Bank {
 	// Get the loan
 	@Override
 	public int getLoan(String type, int loanAmount,int loantime) {
+		
+		Loan l;
+		
 		switch(type){
 		case "Home Loan":
-			HomeLoan hl=new HomeLoan();
-			 return hl.checkEligibility();
+			l=new HomeLoan();
+			break;
 		case "Education Loan":
-			EducationLoan el=new EducationLoan();
-			return el.checkEligibility();
+			l=new EducationLoan();
+			break;
 		case "Personal Loan":
-			PersonalLoan pl=new PersonalLoan();
-			return pl.checkEligibility();
+			l=new PersonalLoan();
+			break;
 		case "Travel Loan":
-			TravelLoan tl=new TravelLoan();
-			return tl.checkEligibility();
+			l=new TravelLoan();
+			break;
 		default:
 			System.out.println("Please Provide Correct Loan Type");
 			return 0;
 		
 		}
 		
-		 
+		l.setMybank(this);
+		l.setLoanamount(loanAmount);
+		l.setLoantime(loantime);
+		
+		return l.checkEligibility(); 
 	}
 
 }
